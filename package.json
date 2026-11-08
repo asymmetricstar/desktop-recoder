@@ -1,0 +1,61 @@
+{
+  "name": "desktop-recorder",
+  "productName": "Desktop Recorder",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Desktop screen recorder built on RecordRTC",
+  "author": "Desktop Recorder <noreply@example.com>",
+  "main": "src/main/main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "npm run build:win",
+    "build:win": "electron-builder --win --config.directories.output=dist/windows",
+    "build:linux": "electron-builder --linux --config.directories.output=dist/linux",
+    "build:linux:tar": "electron-builder --linux --config.directories.output=dist/linux --config.linux.target=tar.gz"
+  },
+  "license": "MIT",
+  "build": {
+    "appId": "com.desktoprecorder.app",
+    "productName": "Desktop Recorder",
+    "asar": true,
+    "files": [
+      "src/**/*",
+      "256-icon.ico",
+      "package.json"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "icon": "256-icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "shortcutName": "Desktop Recorder"
+    },
+    "linux": {
+      "icon": "src/assets/icon-512.png",
+      "target": [
+        "AppImage"
+      ],
+      "category": "Utility",
+      "maintainer": "Desktop Recorder <noreply@example.com>"
+    }
+  },
+  "devDependencies": {
+    "electron": "^45.2.3",
+    "electron-builder": "^26.18.0",
+    "recordrtc": "^5.6.2"
+  }
+}

@@ -1,0 +1,237 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: transparent;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: default;
+  font-family: "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif;
+  color: #ececec;
+}
+
+.bar {
+  position: absolute;
+  inset: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background: rgba(26, 26, 28, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 10px;
+  /* Blur + offset must stay inside the transparent window margin, otherwise the shadow gets clipped.
+     The vertical offset is intentionally small so the bottom band matches the top and sides. */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5), 0 0.5px 2px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  -webkit-app-region: drag;
+}
+
+/* minimal header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 18px;
+  padding: 4px 3px 0 10px;
+  flex: 0 0 auto;
+  -webkit-app-region: drag;
+}
+
+.brand {
+  font-size: 9.5px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  color: #7e7e7e;
+  white-space: nowrap;
+}
+
+.btn-close {
+  width: 20px;
+  height: 15px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+  color: #8a8a8a;
+  cursor: pointer;
+  -webkit-app-region: no-drag;
+  transition: background 90ms ease, color 90ms ease;
+}
+
+.btn-close svg {
+  width: 8px;
+  height: 8px;
+  display: block;
+  pointer-events: none;
+}
+
+.btn-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.btn-close:active {
+  background: rgba(239, 68, 68, 0.85);
+  color: #ffffff;
+}
+
+.views {
+  display: flex;
+  align-items: stretch;
+  flex: 1;
+  min-height: 0;
+}
+
+.view {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  padding: 0 4px;
+}
+
+.view[hidden] {
+  display: none !important;
+}
+
+.btn {
+  position: relative;
+  width: 44px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  gap: 0;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: #e8e8e8;
+  cursor: pointer;
+  -webkit-app-region: no-drag;
+  padding: 0;
+  transition: background 90ms ease, color 90ms ease;
+}
+
+.btn svg {
+  width: 19px;
+  height: 19px;
+  display: block;
+  pointer-events: none;
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.btn:active {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.btn:focus-visible {
+  outline: 1px solid rgba(255, 255, 255, 0.4);
+  outline-offset: -2px;
+}
+
+.btn:disabled {
+  color: rgba(255, 255, 255, 0.28);
+  pointer-events: none;
+}
+
+.btn.timer {
+  width: 58px;
+  grid-template-columns: auto auto;
+  justify-content: center;
+  column-gap: 5px;
+}
+
+.btn.timer .label {
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  color: #d6d6d6;
+  font-variant-numeric: tabular-nums;
+}
+
+.sep {
+  width: 1px;
+  height: 20px;
+  margin: 0 5px;
+  background: rgba(255, 255, 255, 0.13);
+  flex: 0 0 auto;
+}
+
+/* recording state */
+.view.rec {
+  justify-content: center;
+  gap: 2px;
+  padding: 0 4px;
+}
+
+.rec-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ef4444;
+  margin-right: 8px;
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.75);
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+.rec-time {
+  font-size: 14px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.5px;
+  color: #f2f2f2;
+  min-width: 50px;
+  text-align: left;
+}
+
+.btn.stop {
+  color: #ff5f56;
+}
+
+.btn.stop:hover {
+  background: rgba(239, 68, 68, 0.16);
+}
+
+/* busy state */
+.view.busy {
+  justify-content: center;
+  gap: 9px;
+}
+
+.busy-text {
+  font-size: 12px;
+  color: #cfcfcf;
+  letter-spacing: 0.2px;
+}
+
+.spinner {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 1.6px solid rgba(255, 255, 255, 0.25);
+  border-top-color: #ffffff;
+  animation: spin 720ms linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.bar.is-busy {
+  border-color: rgba(255, 255, 255, 0.12);
+}

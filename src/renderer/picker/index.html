@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Desktop Recorder</title>
+  <link rel="stylesheet" href="picker.css" />
+</head>
+<body>
+  <div class="panel">
+    <header class="header">
+      <span class="title">Select window</span>
+      <button class="close" id="btn-close" title="Close" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+          <path d="M6 6l12 12M18 6L6 18" />
+        </svg>
+      </button>
+    </header>
+    <div class="grid" id="grid"></div>
+    <footer class="footer">
+      <span id="empty">Loading…</span>
+      <span class="hint">Esc to cancel</span>
+    </footer>
+  </div>
+  <script src="picker.js"></script>
+</body>
+</html>
