@@ -1,5 +1,8 @@
 # Desktop Recorder
 
+<img width="1826" height="937" alt="screen" src="https://github.com/user-attachments/assets/fe8b6648-566a-4f22-a8bc-24d4bdd5daa2" />
+
+
 A desktop screen recorder built on  Electron + RecordRTC, no extra tooling required.
 
 ## Features
